@@ -1,2 +1,2 @@
 # twitte_client
-App client for twitter
+Development of client using React for clone twitter.
