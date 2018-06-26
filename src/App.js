@@ -6,12 +6,7 @@ import { Container } from 'react-materialize';
 class App extends Component {
   render() {
     return (
-      <div>
-        <Header />
-        <Container>
-          <ProfilePageContainer/>
-        </Container>
-      </div>
+      <ProfilePageContainer/>
     );
   }
 }
