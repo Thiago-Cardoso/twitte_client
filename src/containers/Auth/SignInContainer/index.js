@@ -1,19 +1,32 @@
- import React from 'react'
- import SignIn from '../../../components/Auth/SignIn'
+import React from 'react'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import SignIn from '../../../components/Auth/SignIn'
+import { logIn } from './actions';
  
- class SignInContainer extends React.Component {
-  constructor() {
-   super()
-   this.handleSubmit = this.handleSubmit.bind(this) 
-  }
  
-  handleSubmit(form) { 
-     console.log(form)
-  }
+class SignInContainer extends React.Component {
+constructor() {
+super()
+this.handleSubmit = this.handleSubmit.bind(this) 
+}
  
-  render() {
-    return <SignIn handleSubmit={this.handleSubmit}/>
-  }
- }
+handleSubmit(form) {
+this.props.logIn(form)
+}
  
- export default SignInContainer;
+ 
+render() {
+return <SignIn handleSubmit={this.handleSubmit}/>
+}
+}
+ 
+function mapStateToProps(state) {
+return { }
+};
+ 
+function mapDispatchToProps(dispatch) {
+return bindActionCreators({ logIn }, dispatch)
+}
+ 
+export default connect(mapStateToProps, mapDispatchToProps)(SignInContainer)
