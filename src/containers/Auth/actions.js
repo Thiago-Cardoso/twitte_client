@@ -18,3 +18,12 @@ export function getCurrentUser() {
    );
   }; 
  }
+
+ export function logOut() {
+  localStorage.removeItem('jwt');
+
+  return (dispatch) => {
+   dispatch({ type: REMOVE_CURRENT_USER })
+   dispatch(push('/'));
+  };
+ }
