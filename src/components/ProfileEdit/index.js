@@ -1,27 +1,84 @@
- import React, { Component } from 'react';
- import ProfileEdit from '../../components/ProfileEdit'
+ import React from "react";
+ import { Row, Col, Card } from 'react-materialize';
+ import MainLayout from '../MainLayout'
+ import UserInfoContainer from '../../containers/UserInfoContainer'
+ import TrendingTopicsContainer from '../../containers/TrendingTopicsContainer'
+ import { LocalForm, Control } from 'react-redux-form';
+ import styled from 'styled-components';
  
- class ProfileEditContainer extends Component {
+ const ProfileImage = styled.img`
+   margin-top: 10px;
+   margin-bottom: 10px;
+ `;
  
-  constructor() {
-    super()
-    this.updateProfile = this.updateProfile.bind(this)
-    this.updatePassword = this.updatePassword.bind(this)
- }
+ const ProfileEdit = (props) => (
+  <MainLayout>
+   <Row>
+    <Col s={12} m={6} className="offset-m3">
+     <Card>
+      <Row>
+       <Col m={8} s={8} offset="">
+        <b className="grey-text text-darken-1">Personal Info</b>
+       </Col>
+      </Row>
  
- updateProfile(values){
- console.log('Update Profile', values)
- } 
+      <Row>
+       <Col m={12} s={12} offset="">
+        <div className="form">
+         <div>
+          <LocalForm onSubmit={(values) => props.updateProfile(values) }>
+           <Control.text model=".name"
+             name="name"
+             placeholder="Name"
+           />
+           <Control.text model=".email" 
+             name="email"
+             placeholder="Email"
+           />
+           <Control.text model=".description"
+             name="description"
+             placeholder="Description..."
+           />
+           <div className="right">
+             <button type="submit" className="blue btn grey darken-2">Update</button>
+           </div>
+          </LocalForm>
+         </div>
+        </div>
+       </Col>
+      </Row>
  
- updatePassword(values){
-   console.log('Update Password', values)
- }
+      <Row>
+       <Col m={8} s={8} offset="">
+        <b className="grey-text text-darken-1">Change Password</b>
+       </Col>
+      </Row>
  
- render() {
-   return (
-     <ProfileEdit updateProfile={this.updateProfile} updatePassword={this.updatePassword} />
-   );
-  }
- }
+      <Row>
+       <Col m={12} s={12} offset="">
+        <div className="form">
+         <div>
+          <LocalForm onSubmit={(values) => props.updatePassword(values) }>
+           <Control.text model=".password"
+             name="password" 
+             placeholder="Password" 
+           />
+           <Control.text model=".password_confirmation"
+             name="password_confirmation" 
+             placeholder="Password Confirmation" 
+           />
+           <div className="right">
+             <button type="submit" className="blue btn grey darken-2">Update</button>
+           </div>
+          </LocalForm>
+         </div>
+        </div>
+       </Col>
+      </Row>
+     </Card>
+    </Col>
+   </Row>
+  </MainLayout>
+ );
  
- export default ProfileEditContainer;
+ export default ProfileEdit;

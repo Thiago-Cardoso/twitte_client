@@ -1,6 +1,6 @@
 import API from '../../api.js';
 import { push } from 'react-router-redux';
-import { UPDATE_CURRENT_USER } from './constants';
+import { UPDATE_CURRENT_USER, REMOVE_CURRENT_USER } from './constants';
 
 export function getCurrentUser() {
   const headers = { 'Authorization': 'Bearer ' + localStorage.getItem('jwt') };
